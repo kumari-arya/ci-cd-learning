@@ -1,0 +1,56 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  extends: [
+    'react-app',
+    'react-app/jest',
+    'airbnb',
+    'airbnb/hooks',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: [
+    'react',
+    'react-hooks',
+  ],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'max-len': ['error', { code: 120 }],
+    'indent': ['error', 2],
+    'linebreak-style': 'off',
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always'],
+    'comma-dangle': ['error', 'always-multiline'],
+    'object-curly-spacing': ['error', 'always'],
+    'array-bracket-spacing': ['error', 'never'],
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'no-underscore-dangle': 'off',
+    'react/function-component-definition': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/button-has-type': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'no-nested-ternary': 'off',
+    'no-trailing-spaces': 'error',
+    'eol-last': 'error',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+}; 
