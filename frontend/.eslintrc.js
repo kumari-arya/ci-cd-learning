@@ -29,7 +29,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    'max-len': ['error', { code: 120 }],
+    'max-len': 'off',
     'indent': ['error', 2],
     'linebreak-style': 'off',
     'quotes': ['error', 'single'],
