@@ -25,9 +25,9 @@ test('renders app without crashing', () => {
   render(
     <TestWrapper>
       <App />
-    </TestWrapper>
+    </TestWrapper>,
   );
-  
+
   // Check if the main navigation is rendered
   expect(screen.getByText(/MERN CI\/CD Project/i)).toBeInTheDocument();
 });
@@ -36,10 +36,10 @@ test('renders navigation links', () => {
   render(
     <TestWrapper>
       <App />
-    </TestWrapper>
+    </TestWrapper>,
   );
-  
+
   // Check if login and register links are present
   expect(screen.getByText(/Login/i)).toBeInTheDocument();
   expect(screen.getByText(/Register/i)).toBeInTheDocument();
-}); 
+});

@@ -6,21 +6,21 @@ import { format } from 'date-fns';
 const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'urgent': return 'bg-red-100 text-red-800';
-      case 'high': return 'bg-orange-100 text-orange-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+    case 'urgent': return 'bg-red-100 text-red-800';
+    case 'high': return 'bg-orange-100 text-orange-800';
+    case 'medium': return 'bg-yellow-100 text-yellow-800';
+    case 'low': return 'bg-green-100 text-green-800';
+    default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'in-progress': return 'bg-blue-100 text-blue-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
-      case 'pending': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+    case 'completed': return 'bg-green-100 text-green-800';
+    case 'in-progress': return 'bg-blue-100 text-blue-800';
+    case 'cancelled': return 'bg-red-100 text-red-800';
+    case 'pending': return 'bg-gray-100 text-gray-800';
+    default: return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -44,10 +44,12 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
     }
   };
 
-  const handleDelete = async (taskId) => {
-    if (window.confirm('Are you sure you want to delete this task?')) {
+  const handleDelete = async (id) => {
+    // eslint-disable-next-line no-alert
+    const confirmDelete = window.confirm('Are you sure you want to delete this task?');
+    if (confirmDelete) {
       try {
-        await axios.delete(`/api/tasks/${taskId}`);
+        await axios.delete(`/api/tasks/${id}`);
         toast.success('Task deleted successfully!');
         onTaskUpdated();
       } catch (error) {
@@ -76,7 +78,7 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
               {task.description && (
                 <p className="text-gray-600 mb-3">{task.description}</p>
               )}
-              
+
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
                   {task.priority}
@@ -91,7 +93,7 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
                 )}
               </div>
             </div>
-            
+
             <div className="flex space-x-2">
               <select
                 value={task.status}
@@ -103,7 +105,7 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
                 <option value="completed">Completed</option>
                 <option value="cancelled">Cancelled</option>
               </select>
-              
+
               {task.status !== 'completed' && (
                 <button
                   onClick={() => handleComplete(task._id)}
@@ -112,14 +114,14 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
                   Complete
                 </button>
               )}
-              
+
               <button
                 onClick={() => onEditTask(task)}
                 className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
               >
                 Edit
               </button>
-              
+
               <button
                 onClick={() => handleDelete(task._id)}
                 className="px-2 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600"
@@ -128,7 +130,7 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
               </button>
             </div>
           </div>
-          
+
           <div className="text-xs text-gray-500">
             Created: {format(new Date(task.createdAt), 'MMM dd, yyyy HH:mm')}
             {task.completedAt && (
@@ -143,4 +145,4 @@ const TaskList = ({ tasks, onTaskUpdated, onEditTask }) => {
   );
 };
 
-export default TaskList; 
+export default TaskList;

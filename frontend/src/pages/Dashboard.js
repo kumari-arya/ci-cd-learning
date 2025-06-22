@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useAuth } from '../contexts/AuthContext';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [filters, setFilters] = useState({
     status: '',
     priority: '',
-    search: ''
+    search: '',
   });
 
   const fetchTasks = useCallback(async () => {
@@ -58,17 +58,19 @@ const Dashboard = () => {
   const handleFilterChange = (e) => {
     setFilters({
       ...filters,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const getTaskStats = () => {
     const total = tasks.length;
-    const completed = tasks.filter(task => task.status === 'completed').length;
-    const pending = tasks.filter(task => task.status === 'pending').length;
-    const inProgress = tasks.filter(task => task.status === 'in-progress').length;
+    const completed = tasks.filter((task) => task.status === 'completed').length;
+    const pending = tasks.filter((task) => task.status === 'pending').length;
+    const inProgress = tasks.filter((task) => task.status === 'in-progress').length;
 
-    return { total, completed, pending, inProgress };
+    return {
+      total, completed, pending, inProgress,
+    };
   };
 
   const stats = getTaskStats();
@@ -204,4 +206,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard; 
+export default Dashboard;

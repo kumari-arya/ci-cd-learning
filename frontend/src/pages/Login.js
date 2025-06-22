@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -15,7 +15,7 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -74,9 +74,9 @@ const Login = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-gray-600">
-        Don't have an account?{' '}
-        <Link to="/register" className="text-blue-500 hover:text-blue-600">
+      <p className="mt-4 text-center text-sm">
+        Don&apos;t have an account?{' '}
+        <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
           Register here
         </Link>
       </p>
@@ -84,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;

@@ -8,14 +8,14 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
     description: editTask?.description || '',
     priority: editTask?.priority || 'medium',
     status: editTask?.status || 'pending',
-    dueDate: editTask?.dueDate ? new Date(editTask.dueDate).toISOString().split('T')[0] : ''
+    dueDate: editTask?.dueDate ? new Date(editTask.dueDate).toISOString().split('T')[0] : '',
   });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -33,7 +33,7 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
         await axios.post('/api/tasks', formData);
         toast.success('Task created successfully!');
       }
-      
+
       onTaskCreated();
       if (!editTask) {
         setFormData({
@@ -41,7 +41,7 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
           description: '',
           priority: 'medium',
           status: 'pending',
-          dueDate: ''
+          dueDate: '',
         });
       }
     } catch (error) {
@@ -56,7 +56,7 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
       <h3 className="text-lg font-semibold mb-4">
         {editTask ? 'Edit Task' : 'Create New Task'}
       </h3>
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="title" className="block text-sm font-medium text-gray-700">
@@ -97,7 +97,9 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
               name="priority"
               value={formData.priority}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300
+              rounded-md focus:outline-none focus:ring-blue-500
+              focus:border-blue-500"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -107,7 +109,11 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
           </div>
 
           <div>
-            <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="status"
+              className="block text-sm
+            font-medium text-gray-700"
+            >
               Status
             </label>
             <select
@@ -160,4 +166,4 @@ const TaskForm = ({ onTaskCreated, onCancel, editTask = null }) => {
   );
 };
 
-export default TaskForm; 
+export default TaskForm;
